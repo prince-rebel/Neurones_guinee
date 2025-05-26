@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="payment_methonde_tree" model="ir.ui.view">
+            <field name="name">payment.methonde.form</field>
+            <field name="model">methode.payment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="payment_methonde_form" model="ir.ui.view">
+            <field name="name">payment.methonde.form</field>
+            <field name="model">methode.payment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_payment_methode" model="ir.actions.act_window">
+            <field name="name">Methode de paiement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">methode.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Methode de paiement
+                </p>
+            </field>
+        </record>
+        <menuitem id="payment_config"
+                  name="Mode de paiement"
+                  parent="sale.menu_sale_config"
+                  action="action_payment_methode"
+                  sequence="4"/>
+        <record id="purchase_purchase_order_form_inherit2" model="ir.ui.view">
+            <field name="name">purchase.purchase.order.form.inherit2</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="reference"/>
+                </field>
+            </field>
+        </record>
+        <record id="sale_view_order_form_form_inherit2" model="ir.ui.view">
+            <field name="name">sale.view.order.form.inherit2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="reference"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_reference" position="after">
+                    <field name="total_discount" invisible="1"/>
+                    <field name="amount_letter" invisible="1"/>
+                    <field name="mode_paiement" invisible="1"/>
+                    <field name="mode_payment" options="{'no_open': True, 'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+        <record id="sale_view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.view.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="amount_letter" invisible="1"/>
+                </field>
+                <field name="partner_shipping_id" position="after">
+                    <field name="project" placeholder="Mettre ici le nom du projet"/>
+                </field>
+                <field name="payment_term_id" position="after">
+                    <field name="mode_paiement" invisible="1"/>
+                    <field name="mode_payment" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="garanty"/>
+                    <field name="delay_validite"/>
+                    <field name="delai_livraison"/>
+                    <field name="paid_deposit"/>
+                </field>
+            </field>
+        </record>
+
+        <!--<record id="stock_view_move_picking_form_inherit2" model="ir.ui.view">
+            <field name="name">stock.move.picking.form.inherit2</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="move_ids_without_package" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="move_ids_without_package" position="after">
+                    <field name="move_ids_without_package"
+                           attrs="{'readonly': ['|', ('show_operations', '=', True), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}"
+                           context="{'picking_type_code': picking_type_code, 'default_picking_id': id, 'form_view_ref':'stock.view_move_picking_form', 'address_in_id': partner_id, 'default_picking_type_id': picking_type_id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+                        <tree decoration-danger="state != 'done' and quantity_done &gt; reserved_availability"
+                              decoration-muted="scrapped == True or state == 'cancel' or (state == 'done' and is_locked == True)"
+                              string="Stock Moves" editable="bottom">
+                            <field name="serie_number"/>
+                            <field name="name" invisible="1"/>
+                            <field name="date_expected" invisible="1"/>
+                            <field name="state" invisible="1" readonly="0"/>
+                            <field name="picking_type_id" invisible="1"/>
+                            <field name="location_id" invisible="1"/>
+                            <field name="location_dest_id" invisible="1"/>
+                            <field name="scrapped" invisible="1"/>
+                            <field name="picking_code" invisible="1"/>
+                            <field name="product_type" invisible="1"/>
+                            <field name="show_details_visible" invisible="1"/>
+                            <field name="show_operations" invisible="1" readonly="1"/>
+                            <field name="additional" invisible="1"/>
+                            <field name="is_locked" invisible="1"/>
+
+                            <field name="product_id" required="1"
+                                   attrs="{'readonly': ['&amp;', ('state', '!=', 'draft'), ('additional', '=', False)]}"/>
+                            <field name="is_initial_demand_editable" invisible="1"/>
+                            <field name="is_quantity_done_editable" invisible="1"/>
+                            <field name="product_uom_qty" string="Initial Demand"
+                                   attrs="{'readonly': [('is_initial_demand_editable', '=', False)]}"/>
+                            <field name="reserved_availability" string="Reserved"
+                                   attrs="{'column_invisible': ['|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming')]}"/>
+                            <field name="quantity_done" string="Done"
+                                   attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
+                            <field name="product_uom"
+                                   attrs="{'readonly': [('state', '!=', 'draft'), ('additional', '=', False)]}"
+                                   options="{'no_open': True, 'no_create': True}" string="Unit of Measure"
+                                   groups="product.group_uom"/>
+                            <button name="action_show_details" string="Register lots, packs, location" type="object"
+                                    icon="fa-list" attrs="{'invisible': [('show_details_visible', '=', False)]}"
+                                    options="{&quot;warn&quot;: true}"/>
+                        </tree>
+                    </field>
+                </field>
+            </field>
+        </record>-->
+
+    </data>
+</odoo>

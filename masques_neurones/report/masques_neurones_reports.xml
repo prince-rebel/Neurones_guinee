@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<report
+                id="sale.report_sale_order"
+                string="Quotation / Order"
+                model="sale.order"
+                report_type="qweb-pdf"
+                file="sale.report_saleorder"
+                name="sale.report_saleorder"
+        />
+        <report
+                id="account.account_invoice_action_report_duplicate"
+                model="account.move"
+                string="Duplicates"
+                report_type="qweb-pdf"
+                name="account.account_invoice_report_duplicate_main"
+                file="account.report_invoice_duplicate"
+                attachment_use="False"
+        />
+        <report
+                id="account.account_invoices"
+                model="account.move"
+                string="Invoices"
+                report_type="qweb-pdf"
+                name="account.report_invoice_invoice"
+                file="account.report_invoice_invoice"
+                attachment_use="True"
+                attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+        />
+        <report
+                string="Purchase Order"
+                id="purchase.action_report_purchase_order"
+                model="purchase.order"
+                report_type="qweb-pdf"
+                name="purchase.report_purchaseorder"
+                file="purchase.report_purchaseorder"
+        />
+
+        <report
+                string="Request for Quotation"
+                id="purchase.report_purchase_quotation"
+                model="purchase.order"
+                report_type="qweb-pdf"
+                name="purchase.report_purchasequotation"
+                file="purchase.report_purchasequotation"
+        />
+        <report
+                string="Delivery Slip"
+                id="stock.action_report_delivery"
+                model="stock.move"
+                report_type="qweb-pdf"
+                name="stock.report_deliveryslip"
+                file="stock.report_deliveryslip"
+        />-->
+
+        <record id="sale.action_report_saleorder" model="ir.actions.report">
+            <field name="name">Quotation / Order</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale.report_saleorder</field>
+            <field name="report_file">sale.report_saleorder</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--<record id="account.account_invoice_action_report_duplicate" model="ir.actions.report">
+            <field name="name">Duplicates</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account.account_invoice_report_duplicate_main</field>
+            <field name="report_file">account.report_invoice_duplicate</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="attachment_use">False</field>
+        </record>-->
+
+        <record id="account.account_invoices" model="ir.actions.report">
+            <field name="name">Invoices</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account.report_invoice_invoice</field>
+            <field name="report_file">account.report_invoice_invoice</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="attachment_use">True</field>
+            <field name="attachment">(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')</field>
+        </record>
+
+        <record id="purchase.action_report_purchase_order" model="ir.actions.report">
+            <field name="name">Purchase Order</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase.report_purchaseorder</field>
+            <field name="report_file">purchase.report_purchaseorder</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="purchase.report_purchase_quotation" model="ir.actions.report">
+            <field name="name">Request for Quotation</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase.report_purchasequotation</field>
+            <field name="report_file">purchase.report_purchasequotation</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

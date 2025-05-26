@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Decaissements" id="account_disbursement_root_menu"/>
+
+        <!-- gestion des transactions -->
+        <record model="ir.ui.view" id="account_disbursement_form_view">
+            <field name="name">account.disbursement.form</field>
+            <field name="model">account.disbursement</field>
+            <field name="arch" type="xml">
+                <form name="Gestion des decaissements">
+                    <header>
+                        <button name="action_done" string="Valider" states="draft" type="object"
+                                groups="account_disbursement.group_disbursement_account_manager"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <field name="name"/>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="amount"/>
+                                <field name="partner_id"/>
+                                <field name="motif"/>
+                                <field name="payment_mode" invisible="1"/>
+                                <field name="payment_mode"
+                                       groups="account_disbursement.group_disbursement_account_manager"/>
+                                <field name="num_transaction"
+                                       groups="account_disbursement.group_disbursement_account_manager"/>
+                                <field name="journal_id"/>
+                                <field name="statement_id"/>
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="employee_id"/>
+                                <field name="user_employee_id"/>
+                                <field name="manager_id"/>
+                                <field name="date"/>
+                                <field name="date_validation"/>
+                                <field name="account_emails" invisible="1"/>
+                                <field name="direction_emails" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_disbursement_tree_view">
+            <field name="name">account.disbursement.tree_view</field>
+            <field name="model">account.disbursement</field>
+            <field name="arch" type="xml">
+                <tree name="Gestion des transactions">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="amount"/>
+                    <field name="motif"/>
+                    <field name="payment_mode" invisible="1"/>
+                    <field name="payment_mode" groups="account_disbursement.group_disbursement_account_manager"/>
+                    <field name="num_transaction"/>
+                    <field name="user_id"/>
+                    <field name="manager_id"/>
+                    <field name="date"/>
+                    <field name="date_validation"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_disbursement_search_view">
+            <field name="name">account.disbursement.tree_view</field>
+            <field name="model">account.disbursement</field>
+            <field name="arch" type="xml">
+                <graph string="Decaissements">
+                    <field name="user_id"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="action_account_disbursement_tree_view" model="ir.actions.act_window">
+            <field name="name">Gestion des décaissements</field>
+            <field name="res_model">account.disbursement</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_id" ref="account_disbursement_tree_view"/>
+        </record>
+
+        <menuitem id="account_disbursement_menu" name="Decaissements" parent="account_disbursement_root_menu"
+                  action="action_account_disbursement_tree_view" sequence="0"/>
+
+        <!-- gestion des types -->
+        <record model="ir.ui.view" id="account_disbursement_type_form_view">
+            <field name="name">account.disbursement.type.form</field>
+            <field name="model">account.disbursement.type</field>
+            <field name="arch" type="xml">
+                <form name="Gestion des  types de decaissement">
+                    <sheet>
+                        <field name="name"/>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_disbursement_type_tree_view">
+            <field name="name">account.disbursement.type.tree</field>
+            <field name="model">account.disbursement.type</field>
+            <field name="arch" type="xml">
+                <tree name="Gestion des types de decaissements">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_disbursement_ttype_ree_view" model="ir.actions.act_window">
+            <field name="name">Gestion des types de décaissement</field>
+            <field name="res_model">account.disbursement.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_disbursement_type_tree_view"/>
+        </record>
+
+        <menuitem id="account_disbursement_menu" name="Decaissements" parent="account_disbursement_root_menu"
+                  action="action_account_disbursement_tree_view" sequence="0"/>
+
+    </data>
+</odoo>

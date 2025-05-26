@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+
+        <record id="view_sequence_monthly_manager_form_inherit" model="ir.ui.view">
+            <field name="name">sequence.monthly.manager.form.inherit</field>
+            <field name="model">sequence.monthly.manager</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="start_date" />
+                                <field name="journal_ids"/>
+                            </group>
+                            <group>
+                                <field name="end_date" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="compute" string="Valider" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sequence_monthly_manager_view">
+            <field name="name">Gestion des sequences</field>
+            <field name="res_model">sequence.monthly.manager</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="sequence_monthly_manager_menu" name="Gestion des sequences" parent="account.menu_finance_configuration"
+                  action="action_sequence_monthly_manager_view" groups="account.group_account_manager"/>
+
+
+    </data>
+</odoo>

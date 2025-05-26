@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_dossier_commercial">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-if="not o and doc">
+                        <t t-set="o" t-value="doc"/>
+                    </t>
+
+                    <t t-if="o and 'company_id' in o">
+                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                    </t>
+                    <t t-if="not o or not 'company_id' in o">
+                        <t t-set="company" t-value="res_company"/>
+                    </t>
+                    <t t-set="o" t-value="o.with_context({'lang':user.lang})"/>
+                    <div class="header o_background_header">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"
+                             class="pull-left"/>
+                        <div class="pull-right company_address">
+                            <div>
+                                <strong t-field="company.partner_id.name"/>
+                            </div>
+                            <span t-field="company.partner_id"
+                                  t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                        </div>
+                        <div class="clearfix mb8"/>
+                    </div>
+
+                    <div class="article o_report_layout_background">
+                        <div class="page">
+                            <div class="row">
+                                <h2 class="pull-right">
+                                    Référence Dossier :
+                                    <span t-field="o.name"/>
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <div class="pull-left">
+                                    Client :
+                                    <span t-field="o.partner_id.name"/>
+                                    <br/>
+                                    Date de création :
+                                    <span t-field="o.date_creation"/>
+                                    <br/>
+                                    Responsable :
+                                    <span t-field="o.user_id.name"/>
+                                    <br/>
+                                    Equipe Commercial :
+                                    <span t-field="o.team_id.name"/>
+                                    <br/>
+                                    Société :
+                                    <span t-field="o.company_id.name"/>
+                                    <br/>
+                                    Dévise :
+                                    <span t-field="o.currency_id.symbol"/>
+                                </div>
+                                <div class="pull-right">
+                                    Chiffre d'affaire
+                                    <br/>
+                                    Chiffre d'affaire provisoire :
+                                    <span t-field="o.amount_business_provisoire"/>
+                                    <br/>
+                                    Chiffre d'affaire définitif :
+                                    <span t-field="o.amount_ca_definitive"/>
+                                    <br/>
+                                    Date de fin projet :
+                                    <span t-field="o.date_end_project"/>
+                                    <br/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="pull-left">
+                                    Synthèse des dépenses
+                                    <br/>
+                                    AUTRES DEPENSES :
+                                    <span t-field="o.other_depense"/>
+                                    <br/>
+                                    DEPENSES PROVISOIRES :
+                                    <span t-field="o.depense_provisoire"/>
+                                    <br/>
+                                    DEPENSES DEFINITIVES :
+                                    <span t-field="o.depense_definitive"/>
+                                    <br/>
+                                </div>
+                                <div class="pull-center">
+                                    MARGE COMMERCIALE BRUTE
+                                    <br/>
+                                    Marge provisoire :
+                                    <span t-field="o.marge_provisoire"/>
+                                    <br/>
+                                    Marge définitive :
+                                    <span t-field="o.marge_definitive"/>
+                                    <br/>
+                                </div>
+                                <div class="pull-right">
+                                    TAUX DE MARGE COMMERCIALE
+                                    <br/>
+                                    Marge provisoire :
+                                    <span t-field="o.perc_marge_provisoire"/>
+                                    <br/>
+                                    Marge définitive :
+                                    <span t-field="o.perc_marge_definitive"/>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="pull-center">RÉSUMÉ DES INFORMATIONS</div>
+                            <div class="">
+                                <p>Bons de commandes clients</p>
+                                <t t-foreach="o.in_ids" t-as="sale">
+                                    <div class="row mt32 mb32">
+                                        <div class="col-xs-3">
+                                            <p t-field="sale.name"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <p t-field="sale.date_order"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <p t-field="sale.partner_id.name"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <p t-field="sale.user_id.name"/>
+                                        </div>
+                                    </div>
+                                </t>
+
+                            </div>
+                            <br/>
+                            <div class="">
+                                <p class="text-center">FACTURES CLIENTS</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Date facturation</th>
+                                            <th>Date écheance</th>
+                                            <th>Total facture</th>
+                                            <th>Total à payer</th>
+                                            <th>État</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="total_invoice" t-value="0"/>
+                                        <t t-foreach="o.in_invoice_ids" t-as="fc">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="fc.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="fc.date_invoice"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="fc.date_due"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="fc.amount_total"/>
+                                                </td>
+                                                <t t-set="total_invoice" t-value="total_invoice + fc.amount_total"/>
+                                                <td>
+                                                    <span t-field="fc.residual"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="fc.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td colspan="3">Total</td>
+                                            <td>
+                                                <span t-esc="total_invoice"/>
+                                            </td>
+                                            <td colspan="2"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="">
+                                <p class="text-center">COMMANDES FOURNISSEURS</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fournisseur</th>
+                                            <th>Référence</th>
+                                            <th>Date commande</th>
+                                            <th>Date prévu</th>
+                                            <th>Total HT</th>
+                                            <th>Total TTC</th>
+                                            <th>État</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.out_ids" t-as="po">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="po.partner_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.date_order"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.date_planned"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.amount_untaxed"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.amount_ttc"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="po.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="">
+                                <p class="text-center">FACTURES FOURNISSEURS</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Fournisseur</th>
+                                            <th>Date commande</th>
+                                            <th>Date prévu</th>
+                                            <th>Dévise</th>
+                                            <th>Total HT</th>
+                                            <th>Total TTC</th>
+                                            <th>État</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="t_montant_ht" t-value="0"/>
+                                        <t t-set="t_montant_ttc" t-value="0"/>
+                                        <t t-foreach="o.out_invoice_ids" t-as="oinvoice">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="oinvoice.number"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="oinvoice.partner_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="oinvoice.date_invoice"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="oinvoice.date_due"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="oinvoice.currency_id.name"/>
+                                                </td>
+                                                <t t-set="t_montant_ht"
+                                                   t-value="t_montant_ht + oinvoice.amount_untaxed"/>
+                                                <td>
+                                                    <span t-field="oinvoice.amount_untaxed"/>
+                                                </td>
+                                                <t t-set="t_montant_ttc" t-value="t_montant_ttc + oinvoice.amount_ttc"/>
+                                                <td>
+                                                    <span t-field="oinvoice.amount_ttc"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="oinvoice.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="">
+                                <p class="text-center">DECAISSEMENTS</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Type</th>
+                                            <th>Employé</th>
+                                            <th>Description</th>
+                                            <th>Mode de paiement</th>
+                                            <th>N° Chèque/Bon de caisse</th>
+                                            <th>Montant</th>
+                                            <th>Manager</th>
+                                            <th>Date de création</th>
+                                            <th>Date de validation</th>
+                                            <th>État</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="t_decaissement" t-value="0"/>
+                                        <t t-foreach="o.disbursement_ids" t-as="dis">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="dis.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.type"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.user_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.motif"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.payment_mode"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.num_transaction"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.amount"/>
+                                                </td>
+                                                <t t-set="t_decaissement" t-value="t_decaissement + dis.amount"/>
+                                                <td>
+                                                    <span t-field="dis.manager_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.date_validation"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="dis.state"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td colspan="6">Total</td>
+                                            <td>
+                                                <span t-esc="total_invoice"/>
+                                            </td>
+                                            <td colspan="4"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer o_background_footer">
+                        <div class="text-center">
+                            <ul class="list-inline">
+                                <li t-if="company.phone">
+                                    <i class="fa fa-phone"/>
+                                    <span t-field="company.phone"/>
+                                </li>
+                                <li t-if="company.email">
+                                    <i class="fa fa-at"/>
+                                    <span t-field="company.email"/>
+                                </li>
+                                <li t-if="company.website">
+                                    <i class="fa fa-globe"/>
+                                    <span t-field="company.website"/>
+                                </li>
+                                <li t-if="company.vat">
+                                    <i class="fa fa-building-o"/>
+                                    <t t-esc="company.country_id.vat_label or 'TIN'"/>:
+                                    <span t-field="company.vat"/>
+                                </li>
+                            </ul>
+                            <div t-field="company.report_footer"/>
+                            <div class="text-muted">
+                                Page:
+                                <span class="page"/>
+                                of
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
