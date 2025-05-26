@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="email_template_account_notif" model="mail.template">
+            <field name="name">Decaissement : Comptable notif</field>
+            <field name="model_id" ref="account_disbursement.model_account_disbursement"/>
+            <field name="subject">Decaissement (Ref ${object.name or 'n/a' })</field>
+            <field name="email_from">${object.login }</field>
+            <field name="email_to">${object.account_emails }</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Cher(ère) Mesdames/Messieurs,
+                        <br/><br/>
+                        Le dmeande de decaissement <strong>${object.name}</strong> requiert votre contrôle et validation.
+                        <br/><br/>
+                        Meilleurs salutations,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <!--<field name="user_signature" eval="False"/>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_manager_notif" model="mail.template">
+            <field name="name">Décaissement: Manager notif</field>
+            <field name="model_id" ref="account_disbursement.model_account_disbursement"/>
+            <field name="email_to">${object.manager_id.login}</field>
+            <field name="subject">Décaisement (Ref ${object.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Cher(ère) M/Mme ${object.manager_id.name}
+                        <br/><br/>
+                        La demande de decaissement dont la référence est <strong>${object.name}</strong> requiert votre validation.
+                        <br/><br/>
+                        Meilleures salutations,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <!--<field name="user_signature" eval="False"/>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_dg_notif" model="mail.template">
+            <field name="name">Décaissement: Manager notif</field>
+            <field name="model_id" ref="account_disbursement.model_account_disbursement"/>
+            <field name="email_to">${object.direction_emails}</field>
+            <field name="subject">Décaisement (Ref ${object.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        La demande de decaissement dont la référence est <strong>${object.name}</strong> requiert votre validation.
+                        <br/><br/>
+                        Meilleures salutations,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <!--<field name="user_signature" eval="False"/>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_user_done_notif" model="mail.template">
+            <field name="name">Décaissement: Manager notif</field>
+            <field name="model_id" ref="account_disbursement.model_account_disbursement"/>
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject">Validation décaisement (Ref ${object.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Cher(ère) M/Mme ${object.user_id.name}
+                        <br/><br/>
+                        Votre demande de decaissement dont la référence est <strong>${object.name}</strong> a été validée
+                        par la Direction générale.
+                        <br/><br/>
+                        Meilleures salutations,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <!--<field name="user_signature" eval="False"/>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_user_refused_notif" model="mail.template">
+            <field name="name">Décaissement: Manager notif</field>
+            <field name="model_id" ref="account_disbursement.model_account_disbursement"/>
+            <field name="email_from">${user.login |safe}</field>
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject">Décaisement (Ref ${object.num_transaction})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Cher(ère) M/Mme ${object.user_id.name}
+                        <br/><br/>
+                       Votre demande de decaissement dont la référence est <strong>${object.name}</strong> a été rejetée
+                        par la Direction générale.
+                        <br/><br/>
+                        Meilleures salutations,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <!--<field name="user_signature" eval="False"/>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

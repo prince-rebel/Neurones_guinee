@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_purchase_discout,sale.purchase.discout,model_sale_purchase_discout,sales_team.group_sale_salesman,1,0,0,0
+access_sale_order_frais_approche,sale.frais.approche,model_sale_frais_approche,sales_team.group_sale_salesman,1,0,0,0
+access_sale_order_marge_voulue,sale.marge.voulue,model_sale_marge_voulue,sales_team.group_sale_salesman,1,0,0,0

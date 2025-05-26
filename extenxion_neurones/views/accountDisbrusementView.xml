@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="neurones_account_disbursement" model="ir.ui.view">
+            <field name="name">account.disbursement.extended</field>
+            <field name="model">account.disbursement</field>
+            <field name="inherit_id" ref="account_disbursement.account_disbursement_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="before">
+                    <field name="type_depense" />
+                    <field name="dossier_id" attrs="{'invisible':[('type_depense', '!=', 'project')],
+                        'required':[('type_depense', '=', 'project')]}"/>
+                </xpath>
+            </field>
+    </record>
+
+</odoo>

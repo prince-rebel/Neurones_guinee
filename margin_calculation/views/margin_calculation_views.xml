@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+   <!-- <record id="action_form_purchase_discout" model="ir.actions.act_window">
+        <field name="name">Remise Achat</field>
+        <field name="res_model">sale.purchase.discout</field>
+        <field name="arch" type="xml">
+            <field name="name" />
+            <field name="taux" />
+            <field name="description"/>
+        </field>
+    </record>-->
+
+    <record model="ir.actions.act_window" id="action_form_purchase_discout">
+        <field name="name">Remise Achat</field>
+        <field name="res_model">sale.purchase.discout</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+
+    <!--<record id="action_form_frais_approche" model="ir.actions.act_window">
+        <field name="name">Frais approche</field>
+        <field name="res_model">sale.frais.approche</field>
+        <field name="arch" type="xml">
+            <field name="name"/>
+            <field name="taux" />
+            <field name="description"/>
+        </field>
+    </record>-->
+
+    <record model="ir.actions.act_window" id="action_form_frais_approche">
+        <field name="name">Frais approche</field>
+        <field name="res_model">sale.frais.approche</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!--<record id="action_form_marge_voulue" model="ir.actions.act_window">
+        <field name="name">Marge voulue</field>
+        <field name="res_model">sale.marge.voulue</field>
+        <field name="arch" type="xml">
+            <field name="name"/>
+            <field name="taux" />
+            <field name="description"/>
+        </field>
+    </record>-->
+
+    <record model="ir.actions.act_window" id="action_form_marge_voulue">
+        <field name="name">Marge voulue</field>
+        <field name="res_model">sale.marge.voulue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+
+    <menuitem
+            id="sales_config_margin_calculation"
+            name="Marges"
+            parent="sale.menu_sale_config"
+            sequence="7" />
+    <menuitem
+            id="sales_config_margin_calculation_purchase_discout"
+            name="Remise achats"
+            parent="sales_config_margin_calculation"
+            action="action_form_purchase_discout"
+            sequence="1" />
+    <menuitem
+            id="sales_config_margin_calculation_frais_approche"
+            name="Frais approches"
+            parent="sales_config_margin_calculation"
+            action="action_form_frais_approche"
+            sequence="2" />
+    <menuitem
+            id="sales_config_margin_calculation_marge_voulue"
+            name="Marge voulue"
+            parent="sales_config_margin_calculation"
+            action="action_form_marge_voulue"
+            sequence="3" />
+
+
+    <record id="extended_view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.extended</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="price_purchase_fournisseur" />
+                    <field name="device_purchase_id" />
+                    <field name="discount_supplier" />
+                    <field name="frais_approche_prec" />
+                    <field name="amount_frais_approche" invisible="1"/>
+                    <field name="prix_revient_product" />
+                    <field name="marge_sale" />
+                    <field name="amount_marge_voulue" invisible="1"/>
+                    <field name="amount_marge_real" invisible="0"/>
+                    <field name="taux_marge_real" invisible="0"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
+                    <field name="price_purchase_fournisseur" />
+                    <field name="device_purchase_id" />
+                    <field name="discount_supplier" />
+                    <field name="frais_approche_prec" />
+                    <field name="frais_approche_id" invisible="1"/>
+                    <field name="amount_frais_approche" invisible="1"/>
+                    <field name="prix_revient_product" />
+                    <field name="marge_sale" />
+                    <field name="marge_voulue_id" invisible="1"/>
+                    <field name="amount_marge_voulue" invisible="1"/>
+                    <field name="amount_marge_real" invisible="1"/>
+                    <field name="taux_marge_real" invisible="1"/>
+                </xpath>
+                <field name="tax_totals" position="after">
+                    <field name="provision" />
+                    <field name="globale_marge" invisible="0"/>
+                    <field name="taux_marge" invisible="0"/>
+                    <field name="amount_total_price_purchase" invisible="0"/>
+                    <field name="frais_approche" invisible="0"/>
+                    <!-- <field name="globale_marge_formated" /> -->
+                </field>
+            </field>
+    </record>
+
+</odoo>

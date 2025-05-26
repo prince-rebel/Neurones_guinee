@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="purchase.report_purchasequotation_document">
+    <div class="article">
+
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <div class="page">
+            <div class="header_custom">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img t-if="o.company_id.logo"
+                             t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                             class="img-responsive img" width="400" height="250"
+                             style=" margin-top:-10px;opacity: 1;"
+
+                        />
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-4" name="company_address"
+                         style="border: 1px solid black;font-size:12px;padding-left:10px;display: inline-block;">
+                        <strong><span t-field="o.company_id.partner_id"/></strong><br/>
+                        <span t-field="o.company_id.street"/><br/>
+                        <span t-field="o.company_id.street2"/><br/>
+                        <span t-field="o.company_id.zip"/><br/>
+                        Tél..:&#032;&#032;&#032;<span t-field="o.company_id.phone"/><br/>
+                        <span>Fax..:&#032;&#032;&#032;(225)22429009</span><br/>
+                    </div>
+                </div>
+                <div class="clearfix mb8"/>
+            </div>
+            <div class="row" style="width: 4%"></div>
+            <div class="oe_structure"/>
+
+            <div class="row mt32 mb32">
+                <div class="col-xs-6">
+                    <strong>Adresse de livraison:</strong>
+                    <!--<div t-if="'dest_address_id' in o and o.dest_address_id">
+                        <div t-field="o.dest_address_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                    </div>
+                    <div t-if="not o.dest_address_id and o.picking_type_id.warehouse_id">
+                        <span t-field="o.picking_type_id.warehouse_id.name"/>
+                        <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                    </div> -->
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <strong style="font-size:25px;"><span t-field="o.partner_id"/></strong>
+                    <div t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address","phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                </div>
+            </div>
+
+            <h2>Demande de prix N° <span t-field="o.name"/></h2>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th><strong>Description</strong></th>
+                        <th class="text-center"><strong>Date prévue</strong></th>
+                        <th class="text-right"><strong>Quantité</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="o.order_line" t-as="order_line">
+                        <td>
+                            <span t-field="order_line.name"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="order_line.date_planned"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="order_line.quantity"/>
+                            <span t-field="order_line.product_uom" groups="product.group_uom"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p t-field="o.notes"/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-7">
+                    <strong><p><u>Signature</u></p></strong>
+                </div>
+            </div>
+            <div class="oe_structure"/>
+        </div>
+    </div>
+    <div class="footer o_background_footer">
+        <div class="text-center" style="border-top: 1px solid black;font-size: 12px;">
+            <strong>Neurones Technologies SA</strong> au capital de 100 000 000 FCFA Villa N° 13 SOPIM Résidence la PAIX, Rue des Jardins, Cocody  II Plateaux les Vallons<br/>
+            Abidjan-Côte d’Ivoire 26 BP 855 Abidjan 26 .Tél +225 22 42 90 90 Fax +225 22 42 90 09 RC CI-ABJ-2010-B-5096 CC 1017834B<br/>
+                N° Comptes : <strong>DIAMOND BANK</strong> CI158 01202 261001286014 40, <strong>VERSUS BANK</strong> CI112 01001 011202480002 69 <strong>BACI</strong> CI034 01006 14603220003 82
+            <a href="www.neuronestech.com">www.neuronestech.com</a><br/>
+            <ul class="list-inline">
+                <li>Page:</li>
+                <li><span class="page"/></li>
+                <li>/</li>
+                <li><span class="topage"/></li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template id="purchase.report_purchasequotation">
+    <t t-call="web.html_container">
+        <t t-set="data_report_margin_top" t-value="15"/>
+        <t t-set="data_report_margin_left" t-value="2"/>
+        <t t-set="data_report_margin_rigth" t-value="2"/>
+        <t t-set="data_report_header_spacing" t-value="2"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+        <t t-foreach="docs" t-as="o">
+            <t t-call="purchase.report_purchasequotation_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>
+    
+
