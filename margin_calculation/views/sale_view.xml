@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="order_line" position="replace">
-                <field name="order_line" mode="tree,kanban"
+                <field name="order_line" mode="tree,form,kanban"
                     attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
                     <form string="Sales Order Lines">
                         <group>
