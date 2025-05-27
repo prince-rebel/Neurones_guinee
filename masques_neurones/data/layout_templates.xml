@@ -17,10 +17,16 @@
                 <div class="col-6">
                     <img t-if="o.company_id.logo"
                          t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
-                         class="img-responsive img" width="400" height="250"
+                         class="img-responsive img"
                          style=" margin-top:-10px;opacity: 1;"
 
                     />
+                    <!-- <img t-if="o.company_id.logo"
+                         t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                         class="img-responsive img" width="400" height="250"
+                         style=" margin-top:-10px;opacity: 1;"
+
+                    /> -->
                 </div>
                 <div class="col-2"></div>
                 <div class="col-4" name="company_address"
