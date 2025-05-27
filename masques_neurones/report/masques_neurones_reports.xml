@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="sale.action_report_saleorder"
+            string="Quotation / Order"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="sale.report_saleorder"
+            name="sale.report_saleorder"
+            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+            menu="False"
+        />
+        <report
+            id="action_report_saleorder_neurone"
+            string="Devis/Commande"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="masques_neurones.report_saleorder"
+            name="masques_neurones.report_saleorder"
+            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+        />
+
+        <report
+            id="action_report_pro_forma_invoice_neurone"
+            string="PRO-FORMA Invoice neurone"
+            model="sale.order"
+            report_type="qweb-pdf"
+            groups="sale.group_proforma_sales"
+            file="masques_neurones.report_saleorder_pro_forma"
+            name="sale.report_saleorder_pro_forma"
+            print_report_name="'PRO-FORMA - %s' % (object.name)"
+            menu="False"
+        />
+       <report
+            id="account.account_invoices"
+            model="account.move"
+            string="Invoices"
+            report_type="qweb-pdf"
+            name="account.report_invoice"
+            file="account.report_invoice"
+            attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+            print_report_name="(object._get_report_base_filename())"
+            groups="account.group_account_invoice"
+            menu="False"
+        />
+        <report
+            id="account_invoices_masque_neurone"
+            model="account.move"
+            string="Factures"
+            report_type="qweb-pdf"
+            name="masques_neurones.report_invoice"
+            file="masques_neurones.report_invoice"
+            attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+            print_report_name="(object._get_report_base_filename())"
+            groups="account.group_account_invoice"
+        />
+
+        <record id="account.action_account_original_vendor_bill" model="ir.actions.report">
+            <field name="name">Original Bills</field>
+            <field name="model">account.move</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account.report_original_vendor_bill</field>
+            <field name="report_file">account.report_original_vendor_bill</field>
+            <field name="attachment">'original_vendor_bill.pdf'</field>
+            <field name="attachment_use">True</field>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <report
+            id="account.account_invoices_without_payment"
+            model="account.move"
+            string="Invoices without Payment"
+            report_type="qweb-pdf"
+            name="account.report_invoice"
+            file="account.report_invoice"
+            attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+            print_report_name="(object._get_report_base_filename())"
+        />
+        <report
+            string="Purchase Order"
+            id="purchase.action_report_purchase_order"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="purchase.report_purchaseorder"
+            file="purchase.report_purchaseorder"
+            menu="False"
+        />
+        <report
+            string="Commande fournisseur"
+            id="action_report_purchase_order_neurone"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="masques_neurones.report_purchaseorder"
+            file="masques_neurones.report_purchaseorder"
+        />
+
+        <report
+            string="Request for Quotation"
+            id="purchase.report_purchase_quotation"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="purchase.report_purchasequotation"
+            file="purchase.report_purchasequotation"
+            print_report_name="'Request for Quotation - %s' % (object.name)"
+            menu="False"
+        />
+        <report
+            string="Demande de prix"
+            id="report_purchase_quotation_neurone"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="masques_neurones.report_purchasequotation"
+            file="masques_neurones.report_purchasequotation"
+        />
+
+
+        <report
+            string="Delivery Slip"
+            id="stock.action_report_delivery"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="stock.report_deliveryslip"
+            file="stock.report_deliveryslip"
+            menu="False"
+         />
+        <report
+            string="Delivery Slip neurone"
+            id="action_report_delivery_neurone"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="masques_neurones.report_deliveryslip"
+            file="masques_neurones.report_deliveryslip"
+         />
+    </data>
+</odoo>

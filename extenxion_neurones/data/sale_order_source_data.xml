@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Casual leave -->
+        <record id="holiday_status_cl" model="sale.order.source">
+            <field name="name">Casual leave</field>
+            <field name="limit" eval="False"/>
+        </record>
+
+        <!-- Sick leave -->
+        <record id="holiday_status_sl" model="sale.order.source">
+            <field name="name">Sick Leaves</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_job_1" model="hr.job">
+            <field name="name">DIRECTEUR GENERAL</field>
+        </record>
+        <record id="hr_job_2" model="hr.job">
+            <field name="name">DIRECTEUR DES OPERATIONS</field>
+        </record>
+        <record id="hr_job_3" model="hr.job">
+            <field name="name">ASSISTANTE OPERATIONS</field>
+        </record>
+        <record id="hr_job_4" model="hr.job">
+            <field name="name">SOLUTIONS CONSULTANT SENIOR</field>
+        </record>
+        <record id="hr_job_5" model="hr.job">
+            <field name="name">CHARGE DES MOYENS GENERAUX</field>
+        </record>
+        <record id="hr_job_6" model="hr.job">
+            <field name="name">CHAUFFEUR</field>
+        </record>
+        <record id="hr_job_7" model="hr.job">
+            <field name="name">COMPTABLE</field>
+        </record>
+        <record id="hr_job_8" model="hr.job">
+            <field name="name">ASSISTANTE COMMERCIALE ET MARKETING</field>
+        </record>
+        <record id="hr_job_9" model="hr.job">
+            <field name="name">RESPONSABLE MARKETING ET RELATION PUBLIQUES</field>
+        </record>
+        <record id="hr_job_10" model="hr.job">
+            <field name="name">DIRECTEUR GENERAL ADJOINT</field>
+        </record>
+        <record id="hr_job_11" model="hr.job">
+            <field name="name">CHEF DE PROJET</field>
+        </record>
+        <record id="hr_job_12" model="hr.job">
+            <field name="name">DIRECTEUR ADMINISTRATIF ET FINANCIER</field>
+        </record>
+        <record id="hr_job_13" model="hr.job">
+            <field name="name">SOLUTIONS CONSULTANT</field>
+        </record>
+        <record id="hr_job_14" model="hr.job">
+            <field name="name">PRE-SALES SOLUTIONS CONSULTANT</field>
+        </record>
+        <record id="hr_job_15" model="hr.job">
+            <field name="name">ASSISTANTE DG</field>
+        </record>
+        <record id="hr_job_16" model="hr.job">
+            <field name="name">ASSISTANT COMPTABLE</field>
+        </record>
+        <record id="hr_job_17" model="hr.job">
+            <field name="name">COUNTRY MANAGER</field>
+        </record>
+        <record id="hr_job_18" model="hr.job">
+            <field name="name">ASSISTANTE COMMERCIALE</field>
+        </record>
+        <record id="hr_job_19" model="hr.job">
+            <field name="name">ACCOUNT MANAGER</field>
+        </record>
+        <record id="hr_job_20" model="hr.job">
+            <field name="name">INSIDE SALES</field>
+        </record>
+        <record id="hr_job_21" model="hr.job">
+            <field name="name">ASSISTANTE ADMINISTRATIVE</field>
+        </record>
+        <record id="hr_job_22" model="hr.job">
+            <field name="name">HEAD OF SALES</field>
+        </record>
+        <record id="hr_job_23" model="hr.job">
+            <field name="name">HEAD OF PROFESSIONAL SERVICES (BURKINA)</field>
+        </record>
+        <record id="hr_job_24" model="hr.job">
+            <field name="name">BUSINESS DEVELOPMENT MANAGER</field>
+        </record>
+    </data>
+</odoo>
