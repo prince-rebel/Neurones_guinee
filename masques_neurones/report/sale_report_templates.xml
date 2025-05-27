@@ -31,7 +31,7 @@
             <h6 class="mt16">
                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                     <span t-if="doc.state not in ['draft','sent']">Bon de commande N° </span>
-                    <span t-if="doc.state in ['draft','sent']">Bon de commande N° </span>
+                    <span t-if="doc.state in ['draft','sent']">Proforma N° </span>
                 </t>
                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
                     <span>Facture pro-forma N° </span>
