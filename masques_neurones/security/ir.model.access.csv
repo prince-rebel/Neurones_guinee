@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-masques_neurones.access_methode_payment,access_methode_payment,masques_neurones.model_methode_payment,base.group_user,1,1,1,1
