@@ -5,7 +5,7 @@
         <record id="sequence_neurones_dossier_manager" model="ir.sequence">
             <field name="name">neurones dossier manager sequence</field>
             <field name="code">neurones.dossier.manager</field>
-            <field name="prefix">DOS</field>
+            <field name="prefix">DC/GN/%(range_year)s/</field>
             <field eval="1" name="number_next"/>
             <field eval="1" name="number_increment"/>
             <field eval="False" name="company_id"/>
