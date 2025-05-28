@@ -28,16 +28,16 @@
         <div class="page">
             <div class="oe_structure"/>
 
-            <h6 class="mt16">
+            <h4 class="mt16">
                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
                     <span t-if="doc.state not in ['draft','sent']">Bon de commande N° </span>
-                    <span t-if="doc.state in ['draft','sent']">Proforma N° </span>
+                    <span t-if="doc.state in ['draft','sent']">Devis # </span>
                 </t>
                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
                     <span>Facture pro-forma N° </span>
                 </t>
                 <span t-field="doc.name"/>
-            </h6>
+            </h4>
 
             <div class="row mt32 mb32" id="informations">
                 <!-- <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
