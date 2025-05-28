@@ -18,10 +18,10 @@ class SaleOrder(models.Model):
 
     def action_generate_dossier(self):
         for rec in self:
-            if rec.effective_date:
+            if rec.date_order:
                 vals = {
                     'date_creation': fields.Datetime.now(),
-                    'date': rec.effective_date,
+                    'date': rec.date_order,
                     'user_id': rec.env.user.id,
                     'partner_id': rec.partner_id.id,
                     'team_id': rec.team_id.id,
