@@ -9,8 +9,8 @@
                     <header>
                         <button name="reload_initial_data" string="Recharger les données du BC" class="btn-primary"
                                 type="object"/>
-                        <button name="compute_committee_sale" string="Calculer les commissions" class="btn-primary"
-                                type="object"/>
+                        <!-- <button name="compute_committee_sale" string="Calculer les commissions" class="btn-primary"
+                                type="object"/> -->
                         <field name="state" widget="statusbar" />
                     </header>
                     <sheet>
