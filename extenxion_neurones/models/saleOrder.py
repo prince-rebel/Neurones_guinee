@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
             }
             dossier_id = self.env['neurones.dossier.manager'].create(vals)
             if dossier_id:
-                dossier_id.send_notification('email_template_notify_dc')
+                # dossier_id.send_notification('email_template_notify_dc')
                 marge_provisoire = dossier_id.convert_to_devise(self.globale_marge, self.currency_id, dossier_id.currency_id)
                 dossier_id.marge_provisoire = marge_provisoire
                 self.dossier_id = dossier_id
