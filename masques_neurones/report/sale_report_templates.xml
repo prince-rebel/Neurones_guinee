@@ -200,7 +200,7 @@
                 </div> -->
                 <div class="row" name="total">
                     <div class="col-4 ms-auto">
-                        <table class="table table-sm">
+                        <table class="table table-sm"  style="border-bottom: 0px;">
                             <tr style="border-top: 1px solid black;">
                                 <td><strong>Total HT</strong></td>
                                 <td class="text-end">
