@@ -215,7 +215,7 @@
                                     <tr>
                                         <td><span t-esc="group[0]"/></td>
                                         <td class="text-end">
-                                            <span t-esc="group.tax_group_amount"
+                                            <span t-esc="group[1] "
                                                 t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                         </td>
                                     </tr>
