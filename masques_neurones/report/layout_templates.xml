@@ -6,8 +6,10 @@
                 <div class="header o_background_header">
                     <div class="row">
                         <div class="col-6">
+                            <!-- <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                 style="margin-top:-10px; max-height: 100px; max-width: 400px; opacity: 1;" alt="Logo" /> -->
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                 style="margin-top:-10px; max-height: 100px; max-width: 400px; opacity: 1;" alt="Logo"/>
+                                  alt="Logo" class="pull-left"/>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4" style="border: 1px solid black;font-size:12px;padding-left:10px;">
@@ -32,15 +34,15 @@
                         <strong>Neurones Technologies Guinée - SARL</strong> au capital de 500 000 GNF <strong> siège social : </strong> Kaloum-Manquepas, Conakry<br/>
        .Tél : +224 613 11 06 11  - Cel : +224 613 11 06 11 - RCCM N° GN TCC 2024 B16088<br/>
     	N° Comptes : <strong>BANQUE </strong> Ref : 003 Code guichet : 007 compte : 0000918889<br/>
-<!--
                         <a href="www.neuronestech.com">www.neuronestech.com</a><br/>
--->
+
                         <ul class="list-inline">
-                            <li class="list-inline-item">Page:</li>
-                            <li class="list-inline-item"><span class="page"/></li>
-                            <li class="list-inline-item">/</li>
-                            <li class="list-inline-item"><span class="topage"/></li>
+                            <li style="border: 1px solid #ccc; padding: 2px 4px;">Page:</li>
+                            <li><span class="page" style="border: 1px solid #ccc; padding: 2px 4px;"/></li>
+                            <li style="border: 1px solid #ccc; padding: 2px 4px;">/</li>
+                            <li><span class="topage" style="border: 1px solid #ccc; padding: 2px 4px;"/></li>
                         </ul>
+
                     </div>
                 </div>
             </xpath>
