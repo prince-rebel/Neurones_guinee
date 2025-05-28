@@ -4,19 +4,23 @@
         <template id="report_header_custom" inherit_id="web.external_layout_standard">
             <xpath expr="//div[@t-attf-class='header o_company_#{company.id}_layout']" position="replace">
                 <div class="header o_background_header">
-                    <div class="row mt-5" style="margin-top: 150px;">
+                    <div class="row " style="margin-top: 100px;">
                         <div class="col-6 ">
                             <!-- <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
                                  style="margin-top:-10px; max-height: 100px; max-width: 400px; opacity: 1;" alt="Logo" /> -->
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                  alt="Logo" class="pull-left" style="width: 200px;height:auto;"/>
+                                  alt="Logo" class="pull-left" style="width: 250px;height:auto;"/>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4" style="border: 1px solid black;font-size:12px;padding-left:10px;">
                             <strong><p style="margin: 0;padding: 0;" t-field="o.company_id.partner_id"/></strong>
-                            <p style="margin: 0;padding: 0;" t-if="o.company_id.street" t-field="o.company_id.street"/>
+                            <p style="margin: 0;padding: 0;" >Kaloum-Manquepas, Conakry</p>
+                            <p style="margin: 0;padding: 0;" >Conakry</p>
+                            <p style="margin: 0;padding: 0;" t-if="o.company_id.email" t-field="o.company_id.email"/>
+                           
+                            <!-- <p style="margin: 0;padding: 0;" t-if="o.company_id.street" t-field="o.company_id.street"/>
                             <p style="margin: 0;padding: 0;" t-if="o.company_id.street2" t-field="o.company_id.street2"/>
-                            <p style="margin: 0;padding: 0;" t-if="o.company_id.zip" t-field="o.company_id.zip"/>
+                            <p style="margin: 0;padding: 0;" t-if="o.company_id.zip" t-field="o.company_id.zip"/> -->
                             <t t-if="o.company_id.phone">
                                 <p style="margin: 0;padding: 0;">Tél :&#032;&#032;&#032;<span t-field="o.company_id.phone"/></p>
                             </t>
