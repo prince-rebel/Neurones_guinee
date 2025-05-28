@@ -211,16 +211,17 @@
 
                             <t t-set="tax_totals" t-value="doc.tax_totals"/>
                             <t t-if="tax_totals">
-                                <t t-foreach="tax_totals['groups_by_subtotal'].values()" t-as="group">
+                                <t t-foreach="tax_totals['groups_by_subtotal']" t-as="group">
                                     <tr>
-                                        <td><span t-esc="group['tax_group_name']"/></td>
+                                        <td><span t-esc="group.tax_group_name"/></td>
                                         <td class="text-end">
-                                            <span t-esc="group['tax_group_amount']"
+                                            <span t-esc="group.tax_group_amount"
                                                 t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                         </td>
                                     </tr>
                                 </t>
                             </t>
+
 
                             <tr class="border-black">
                                 <td><strong>Total</strong></td>
