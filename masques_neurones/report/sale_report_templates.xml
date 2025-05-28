@@ -215,13 +215,18 @@
                                     <tr>
                                         <td><span t-esc="group[0]"/></td>
                                         <td class="text-end">
-                                            <span t-esc="group[1] "
-                                                t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            <t t-if="isinstance(group[1], (int, float))">
+                                                <span t-esc="group[1]"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </t>
+                                            <t t-if="not isinstance(group[1], (int, float))">
+                                                <span t-esc="0.0"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </t>
                                         </td>
                                     </tr>
                                 </t>
                             </t>
-
 
                             <tr class="border-black">
                                 <td><strong>Total</strong></td>
@@ -233,6 +238,7 @@
                         </table>
                     </div>
                 </div>
+
 
             </div>
             <br/>
