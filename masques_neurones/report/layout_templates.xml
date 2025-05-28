@@ -5,11 +5,11 @@
             <xpath expr="//div[@t-attf-class='header o_company_#{company.id}_layout']" position="replace">
                 <div class="header o_background_header">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 mt-4	">
                             <!-- <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
                                  style="margin-top:-10px; max-height: 100px; max-width: 400px; opacity: 1;" alt="Logo" /> -->
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                  alt="Logo" class="pull-left"/>
+                                  alt="Logo" class="pull-left" />
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4" style="border: 1px solid black;font-size:12px;padding-left:10px;">
@@ -37,7 +37,7 @@
                         <a href="www.neuronestech.com">www.neuronestech.com</a><br/>
 
                         
-                        <ul class="list-inline" style="border: 1px solid #ccc;">
+                        <ul class="list-inline" >
                             <li class="list-inline-item">Page:</li>
                             <li class="list-inline-item"><span class="page"/></li>
                             <li class="list-inline-item">/</li>
