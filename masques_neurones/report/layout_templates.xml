@@ -9,7 +9,7 @@
                             <!-- <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
                                  style="margin-top:-10px; max-height: 100px; max-width: 400px; opacity: 1;" alt="Logo" /> -->
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                  alt="Logo" class="pull-left" style="width: 170px;height:auto;"/>
+                                  alt="Logo" class="pull-left" style="width: 175px;height:auto;"/>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4" style="border: 1px solid black;font-size:12px;padding-left:10px;">
