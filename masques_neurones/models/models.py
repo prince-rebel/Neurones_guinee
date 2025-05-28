@@ -118,7 +118,28 @@ class Sale(models.Model):
     ], 'Validité', select=True, readonly=False)
     delai_livraison= fields.Char('Délai de livraison')
     paid_deposit= fields.Float('Acompte perçu', compute='_getPaidDeposit')
+    
+    def order_lines_layouted(self):
+        # super(Sale, self).order_lines_layouted()
+        """
+        Returns this order lines classified by sale_layout_category and separated in
+        pages according to the category pagebreaks. Used to render the report.
+        """
+        self.ensure_one()
+        report_pages = [[]]
+        for category, lines in groupby(self.order_line, lambda l: l.layout_category_id):
+            # If last added category induced a pagebreak, this one will be on a new page
+            if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
+                report_pages.append([])
+            # Append category to current report page
+            report_pages[-1].append({
+                'name': category and category.name or 'Sans catégorie',
+                'subtotal': category and category.subtotal,
+                'pagebreak': category and category.pagebreak,
+                'lines': list(lines)
+            })
 
+        return report_pages
 
 class Stock(models.Model):
     _inherit = 'stock.picking'

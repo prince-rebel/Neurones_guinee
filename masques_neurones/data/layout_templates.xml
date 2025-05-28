@@ -18,7 +18,7 @@
                     <img t-if="o.company_id.logo"
                          t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
                          class="img-responsive img"
-                         style=" margin-top:-10px;opacity: 1;"
+                         style=" margin-top:-10px;opacity: 1;max-width: 150px; height: auto;"
 
                     />
                     <!-- <img t-if="o.company_id.logo"
@@ -137,11 +137,12 @@
                     N° Comptes : <strong>DIAMOND BANK</strong> CI158 01202 261001286014 40, <strong>VERSUS BANK</strong> CI112 01001 011202480002 69, <strong>BACI</strong> CI034 01006 14603220003 82<br/>
                 <a href="www.neuronestech.com">www.neuronestech.com</a><br/>
                 <ul class="list-inline">
-                    <li class="list-inline-item">Page:</li>
-                    <li class="list-inline-item"><span class="page"/></li>
-                    <li class="list-inline-item">/</li>
-                    <li class="list-inline-item"><span class="topage"/></li>
+                    <li style="border: 1px solid #ccc; padding: 2px 4px;">Page:</li>
+                    <li><span class="page" style="border: 1px solid #ccc; padding: 2px 4px;"/></li>
+                    <li style="border: 1px solid #ccc; padding: 2px 4px;">/</li>
+                    <li><span class="topage" style="border: 1px solid #ccc; padding: 2px 4px;"/></li>
                 </ul>
+
             </div>
         </div>
     </template>
