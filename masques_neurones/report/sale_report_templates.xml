@@ -78,7 +78,7 @@
             <table class="table table-sm o_main_table">
                 <thead>
                     <tr>
-                        <th>Référence</th>
+                        <!-- <th>Référence</th> -->
                         <th name="th_description" class="text-left">Description</th>
                         <th name="th_quantity" class="text-right">Quantité</th>
                         <th name="th_priceunit" class="text-right">Prix unitaire</th>
@@ -103,7 +103,7 @@
 
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
                             <t t-if="not line.display_type">
-                                <td><span t-field="line.reference"/></td>
+                                <!-- <td><span t-field="line.reference"/></td> -->
                                 <td name="td_name"><span t-field="line.name"/></td>
                                 <td name="td_quantity" class="text-right">
                                     <span t-field="line.product_uom_qty"/>
@@ -156,7 +156,7 @@
 
             <div class="clearfix" name="so_total_summary">
                 <div id="total" class="row" name="total">
-                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5 ml-auto'} ml-auto">
                         <table class="table table-sm">
                             <tr class="border-black o_subtotal" style="">
                                 <td name="td_amount_untaxed_label"><strong>Total HT</strong></td>
