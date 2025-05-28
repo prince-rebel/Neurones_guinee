@@ -155,35 +155,84 @@
             </table>
 
             <div class="clearfix" name="so_total_summary">
+                <!-- <div id="total" class="row" name="total">
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5 '} ml-auto">
+                        <table class="table table-sm">
+                            <tr class="border-black o_subtotal" style="">
+                                <td name="td_amount_untaxed_label"><strong>Total HT</strong></td>
+                                <td name="td_amount_untaxed" class="text-right">
+                                    <span t-field="doc.amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="doc.tax_totals" t-as="tax_total">
+                                <t t-if="tax_total[1] is number">
+                                    <tr style="">
+                                        <t t-if="tax_total[5] == 1 and doc.amount_untaxed == tax_total[2]">
+                                            <td name="td_tax_total_label_3">
+                                                <span t-esc="tax_total[0]"/>
+                                            </td>
+                                            <td name="td_tax_total_3" class="text-right o_price_total">
+                                                <span t-esc="tax_total[1]"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td name="td_tax_total_label">
+                                                <span t-esc="tax_total[0]"/>
+                                            </td>
+                                            <td name="td_tax_total" class="text-right o_price_total">
+                                                <span t-esc="tax_total[1]"
+                                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </t>
+
+                            <tr class="border-black o_total">
+                                <td name="td_amount_total_label"><strong>Total</strong></td>
+                                <td name="td_amount_total" class="text-right">
+                                    <span t-field="doc.amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> -->
                 <div class="row" name="total">
-                        <div class="col-xs-4 pull-right">
-                            <table class="table table-condensed">
-                                <tr class="border-black">
-                                    <td><strong>Total HT</strong></td>
-                                    <td class="text-right">
-                                        <span t-field="doc.amount_untaxed"
-                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                    </td>
-                                </tr>
-                                <t t-foreach="doc._get_tax_amount_by_group()" t-as="amount_by_group">
+                    <div class="col-4 ms-auto">
+                        <table class="table table-sm">
+                            <tr class="border-black">
+                                <td><strong>Total HT</strong></td>
+                                <td class="text-end">
+                                    <span t-field="doc.amount_untaxed"
+                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+
+                            <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                            <t t-if="tax_totals">
+                                <t t-foreach="tax_totals['groups_by_subtotal'].values()" t-as="group">
                                     <tr>
-                                        <td><span t-esc="amount_by_group[0] or 'Taxes'"/></td>
-                                        <td class="text-right">
-                                            <span t-esc="amount_by_group[1]"
-                                                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                        <td><span t-esc="group['tax_group_name']"/></td>
+                                        <td class="text-end">
+                                            <span t-esc="group['tax_group_amount']"
+                                                t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                         </td>
                                     </tr>
                                 </t>
-                                <tr class="border-black">
-                                    <td><strong>Total</strong></td>
-                                    <td class="text-right">
-                                        <span t-field="doc.amount_total"
-                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                            </t>
+
+                            <tr class="border-black">
+                                <td><strong>Total</strong></td>
+                                <td class="text-end">
+                                    <span t-field="doc.amount_total"
+                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+                </div>
+
             </div>
             <br/>
             <div class="row">
