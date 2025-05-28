@@ -187,11 +187,11 @@ class NeuronesDossierManagement(models.Model):
     in_ids = fields.One2many('sale.order', 'dossier_id', "Bons de commande clients", required=False)
     sale_count = fields.Integer(string='# de BCs', compute='_get_all_count', readonly=True)
     in_invoice_ids = fields.One2many('account.move', 'dossier_id', "Factures clients", required=False,
-                                     domain=[('move_type ', 'in', ('out_invoice', 'out_refund'))])
+                                     domain=[('move_type', 'in', ('out_invoice', 'out_refund'))])
     out_invoice_ids = fields.One2many('account.move', 'dossier_id', "Factures Fournisseurs", required=False,
-                                      domain=[('move_type ', 'in', ('in_invoice', 'in_refund'))])
+                                      domain=[('move_type', 'in', ('in_invoice', 'in_refund'))])
     other_move_ids = fields.One2many('account.move', 'dossier_id', "Autres pieces a prendre en compte",
-                                     domain=[('move_type ', 'not in', ('in_invoice', 'in_refund', 'out_invoice', 'out_refund'))])
+                                     domain=[('move_type', 'not in', ('in_invoice', 'in_refund', 'out_invoice', 'out_refund'))])
     invoice_count = fields.Integer(string='# de Factures clients', compute='_get_all_count', readonly=True)
     out_ids = fields.One2many('purchase.order', 'dossier_id', "Achats fournisseurs", required=False)
     disbursement_ids = fields.One2many("account.disbursement", "dossier_id", "Décaissements")
