@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+<!--    <record id="neurones_sale_order" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.extended</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header/field[@name='state']" position="before">-->
+<!--                <button name="action_generate_dossier" type="object" string="Générer le dossier Associé"  class="btn-primary"-->
+<!--                 states="sale"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+<!--&lt;!&ndash;                <field name="sector_activity_id" />&ndash;&gt;-->
+<!--                <field name="dossier_id" />-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='team_id']" position="after">-->
+<!--                <field name="source_id" />-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
     <record id="neurones_sale_order" model="ir.ui.view">
         <field name="name">sale.order.form.extended</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header/field[@name='state']" position="before">
-                <button name="action_generate_dossier" type="object" string="Générer le dossier Associé"
-                        class="btn-primary"
-                        attrs="{'invisible':[('dossier_id', '!=', False)]}"/>
+                <button name="action_generate_dossier" type="object" string="Générer le dossier Associé"  class="btn-primary"
+                 attrs="{'invisible':[('dossier_id', '!=', False)]}"/>
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="dossier_id"/>
+                <field name="dossier_id" />
             </xpath>
-            <!-- <xpath expr="//field[@name='team_id']" position="after">
-                <field name="source_id"/>
-            </xpath> -->
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="source_id" />
+            </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="attributes">
                 <attribute name="required">1</attribute>
             </xpath>
@@ -26,9 +44,9 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Informations additionnelles" invisible="1">
-                    <field name="amount_untaxed_currency"/>
-                    <field name="amount_tax_currency"/>
-                    <field name="amount_total_currency"/>
+                    <field name="amount_untaxed_currency" />
+                    <field name="amount_tax_currency" />
+                    <field name="amount_total_currency" />
                 </page>
             </xpath>
         </field>

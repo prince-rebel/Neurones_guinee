@@ -9,12 +9,11 @@
         """ 
         """,
     'category': 'Customization',
-    'author': 'Veone',
+    'author': 'Jean-Jonathan ARRA',
     'license': 'LGPL-3',
-    'support': 'info@veone.net',
-    'depends': ['base', 'account', 'sale', 'purchase', 'contacts', 'account_disbursement', 'masques_neurones'],
+    'support': 'jonathan.arra@gmail.com',
+    'depends': ['base', 'account', 'sale', 'purchase', 'contacts'],
     'data': [
-        "security/security_view.xml",
         "security/ir.model.access.csv",
         "data/sequence_data_view.xml",
         "data/mail_template_data.xml",
@@ -26,7 +25,6 @@
         "views/accountInvoiceView.xml",
         "views/neurones_dossier_managment_view.xml",
         "views/accountDisbrusementView.xml",
-        "wizards/update_dossier_commercial.xml",
     ],
     'installable': True,
     'application': True,

@@ -4,7 +4,7 @@
 
         <!-- Casual leave -->
         <record id="holiday_status_cl" model="sale.order.source">
-            <field name="name">Casual leave</field>
+            <field name="name"></field>
             <field name="limit" eval="False"/>
         </record>
 

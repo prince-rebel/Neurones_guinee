@@ -13,54 +13,6 @@
                             <field name="users_dc_notify" widget="many2many_tags"/>
                         </group>
                     </group>
-                    <group string="Paramétrages des commissions">
-                        <group>
-                            <group>
-                                <field name="marge_level"/>
-                            </group>
-                            <group>
-                                <field name="marge_level_max"/>
-                            </group>
-
-                        </group>
-                        <field name="committee_setting_ids" nolabel="1">
-                            <tree>
-                                <field name="name"/>
-                                <field name="active"/>
-                                <field name="description"/>
-                            </tree>
-                            <form>
-                                <sheet>
-                                    <group>
-                                        <group>
-                                            <field name="name"/>
-                                            <field name="code"/>
-                                        </group>
-                                        <group>
-                                            <field name="active"/>
-                                        </group>
-                                    </group>
-                                    <notebook>
-                                        <page string="Description">
-                                            <field name="description"/>
-                                        </page>
-                                        <page string="Les Paramètres">
-                                            <field name="line_ids">
-                                                <tree editable="top">
-                                                    <field name="name"/>
-                                                    <field name="rate"/>
-                                                    <field name="committee_rate_min"/>
-                                                    <field name="committee_rate_max"/>
-                                                    <field name="description"/>
-                                                    <field name="active"/>
-                                                </tree>
-                                            </field>
-                                        </page>
-                                    </notebook>
-                                </sheet>
-                            </form>
-                        </field>
-                    </group>
                 </page>
             </xpath>
         </field>

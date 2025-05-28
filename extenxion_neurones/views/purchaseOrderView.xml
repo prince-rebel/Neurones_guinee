@@ -11,18 +11,6 @@
                     <field name="type_neurone" />
                     <field name="dossier_id" attrs="{'required':[('type_neurone', '=', 'externe')], 'invisible':[('type_neurone', '=', 'interne')]}"/>
                 </xpath>
-                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
-                    <field name="used_into_dc" />
-                </xpath>
-                <xpath expr="//notebook" position="inside">
-                    <page string="Autres informations" invisible="1">
-                        <group>
-                            <field name="amount_untaxed_currency" />
-                            <field name="amount_tax_currency" />
-                            <field name="amount_total_currency" />
-                        </group>
-                    </page>
-                </xpath>
             </field>
     </record>
 

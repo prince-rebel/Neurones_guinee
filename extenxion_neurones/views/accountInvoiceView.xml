@@ -1,73 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="act_do_in_invoices" model="ir.actions.act_window">
-        <field name="name">Factures clients</field>
-        <field name="res_model">account.move</field>
-        <field name="view_mode">tree,form,graph</field>
-        <field name="domain">[('move_type', '=' , 'out_invoice'), ('dossier_id', '=', active_id)]</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Create a Quotation, the first step of a new sale.
-            </p>
-            <p>
-                Your next actions should flow efficiently: confirm the Quotation to a Sales Order, then create the
-                Invoice and collect the Payment.
-            </p>
-        </field>
-    </record>
-
-    <record id="act_do_out_invoices" model="ir.actions.act_window">
-        <field name="name">Factures clients</field>
-        <field name="res_model">account.move</field>
-        <field name="view_mode">tree,form,graph</field>
-        <field name="domain">[('type', '=' , 'in_invoice'), ('dossier_id', '=', active_id)]</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Create a Quotation, the first step of a new sale.
-            </p>
-            <p>
-                Your next actions should flow efficiently: confirm the Quotation to a Sales Order, then create the
-                Invoice and collect the Payment.
-            </p>
-        </field>
-    </record>
-
     <record id="neurones_account_invoice" model="ir.ui.view">
-        <field name="name">account.move.form.extended</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="type_neurone"/>
-                <field name="dossier_id" domain="[('partner_id', '=', partner_id)]"
-                       attrs="{'required':[('type_neurone', '=', 'externe')], 'invisible':[('type_neurone', '=', 'interne')]}"/>
+            <field name="name">account.move.form.extended</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="type_neurone" />
+                    <field name="dossier_id"
+                           attrs="{'required':[('type_neurone', '=', 'externe')], 'invisible':[('type_neurone', '=', 'interne')]}"/>
 
-            </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
-                <field name="used_into_dc"/>
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Autres informations" invisible="1">
-                    <group>
-                        <field name="amount_untaxed_currency"/>
-                        <field name="amount_tax_currency"/>
-                        <field name="amount_total_currency"/>
-                    </group>
-                </page>
-            </xpath>
-        </field>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                    <field name="used_into_dc" />
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Autres informations" invisible="0">
+                        <group>
+                            <field name="amount_untaxed_currency" />
+                            <field name="amount_tax_currency" />
+                            <field name="amount_total_currency" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
     </record>
 
-    <record id="neurones_account_invoice_supplier" model="ir.ui.view">
-        <field name="name">account.move.supplier_form.extended</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="type_neurone"/>
-                <field name="dossier_id" attrs="{'required':[('type_neurone', '=', 'externe')]}"/>
-            </xpath>
-        </field>
-    </record>
+
 </odoo>

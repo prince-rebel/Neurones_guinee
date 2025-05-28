@@ -5,6 +5,7 @@ from odoo import api, models, fields, _
 from odoo.exceptions import Warning, ValidationError
 
 
+
 class committeeSetting(models.Model):
     _name = "committee.setting"
     _description = "committee setting management"

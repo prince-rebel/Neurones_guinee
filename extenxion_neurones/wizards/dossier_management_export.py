@@ -19,7 +19,6 @@ class DossierManagementExport(models.TransientModel):
             _search = [('date', '>=', self.date_start), ('date', '<=', self.date_to)]
             dossiers = ds_object.search(_search)
             if dossiers:
-                return
 
 
 

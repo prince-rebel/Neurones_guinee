@@ -36,7 +36,7 @@ class PurchaseOrder(models.Model):
                                     default='externe')
     dossier_id = fields.Many2one('neurones.dossier.manager', "Dossier", required=False)
     amount_untaxed_currency = fields.Float(string='Montant HT en dévise', store=True, readonly=True, compute='_amount_all_currency',
-                                     tracking=True)
+                                     track_visibility='always')
     amount_tax_currency = fields.Float(string='Taxes en dévise', store=True, readonly=True, compute='_amount_all_currency')
     amount_total_currency = fields.Float(string='Montant total en dévise', store=True, readonly=True, compute='_amount_all_currency')
 
