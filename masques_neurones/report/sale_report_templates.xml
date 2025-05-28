@@ -208,6 +208,13 @@
                                         t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                 </td>
                             </tr>
+                            <tr class="border-black">
+                                 <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="doc.amount_tax"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                            </tr>
 
                             <t t-set="tax_totals" t-value="doc.tax_totals"/>
                             <t t-if="tax_totals">
