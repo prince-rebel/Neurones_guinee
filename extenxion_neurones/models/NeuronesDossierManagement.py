@@ -11,15 +11,15 @@ class NeuronesDossierManagement(models.Model):
     _name = "neurones.dossier.manager"
     _description = "Gestion des dossiers"
 
-    def send_notification(self, email_id, context=None):
-        self.ensure_one()
-        template_id = self.env['ir.model.data'].get_object_reference('extenxion_neurones', email_id)
-        try:
-            mail_templ = self.env['mail.template'].browse(template_id[1])
-            result = mail_templ.send_mail(res_id=self.id, force_send=True)
-            return True
-        except:
-            return False
+    # def send_notification(self, email_id, context=None):
+    #     self.ensure_one()
+    #     template_id = self.env['ir.model.data'].get_object_reference('extenxion_neurones', email_id)
+    #     try:
+    #         mail_templ = self.env['mail.template'].browse(template_id[1])
+    #         result = mail_templ.send_mail(res_id=self.id, force_send=True)
+    #         return True
+    #     except:
+    #         return False
 
     @api.model
     def create(self, vals):
