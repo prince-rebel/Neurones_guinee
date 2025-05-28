@@ -201,22 +201,22 @@
                 <div class="row" name="total">
                     <div class="col-4 ms-auto">
                         <table class="table table-sm">
-                            <tr class="border-black">
+                            <tr style="border-top: 1px solid black;">
                                 <td><strong>Total HT</strong></td>
                                 <td class="text-end">
                                     <span t-field="doc.amount_untaxed"
                                         t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                 </td>
                             </tr>
-                            <tr class="border-black">
+                            <tr style="border-bottom: 1px solid black;">
                                  <td>Taxes</td>
-                            <td class="text-right">
-                                <span t-field="doc.amount_tax"
-                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
-                            </td>
+                                <td class="text-right">
+                                    <span t-field="doc.amount_tax"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                                </td>
                             </tr>
 
-                            <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                            <!-- <t t-set="tax_totals" t-value="doc.tax_totals"/>
                             <t t-if="tax_totals">
                                 <t t-foreach="tax_totals['groups_by_subtotal']" t-as="group">
                                     <tr>
@@ -233,7 +233,7 @@
                                         </td>
                                     </tr>
                                 </t>
-                            </t>
+                            </t> -->
 
                             <tr class="border-black">
                                 <td><strong>Total</strong></td>
